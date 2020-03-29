@@ -6,7 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <TextInput placeholder='type list item'/>
-      <Button title='Add' onPress={}/>
+      <Button title='Add' style={styles.textbox}/>
     </View>
   );
 }
@@ -15,10 +15,15 @@ export default function App() {
 // write flexible code that checks device size and automatically adjusts
 const styles = StyleSheet.create({
   container: {
-    padding: 30,
+    padding: 60,
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
+  textbox: {
+    borderColor: 'black',
+    borderWidth: 1,
+    padding: 10
+  }
 });
