@@ -24,15 +24,20 @@ export default class App extends React.Component {
   }
   
   render(){
-    return (
-      <View style={styles.container}>
-        <MapView
-          style={styles.mapStyle}
-          provider='google'
-          region={this.state.location}
-        />
-      </View>
-    );
+    if (this.state.location){
+      return (
+        <View style={styles.container}>
+          <MapView
+            style={styles.mapStyle}
+            provider='google'
+            region={{latitude: this.state.location.coords.latitude,
+            longitude: this.state.location.coords.longitude}}
+          />
+        </View>
+      );
+    } else {
+      return <View><Text>Waiting...</Text></View>
+    }
   }
 }
 
