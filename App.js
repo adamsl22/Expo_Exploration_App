@@ -18,7 +18,6 @@ export default class App extends React.Component {
         errorMessage: 'Permission to access location was denied',
       });
     }
-
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ location });
   }
@@ -36,7 +35,7 @@ export default class App extends React.Component {
         </View>
       );
     } else {
-      return <View><Text>Waiting...</Text></View>
+      return <View><Text>Enable location to use this feature.</Text></View>
     }
   }
 }
