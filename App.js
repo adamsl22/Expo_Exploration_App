@@ -1,42 +1,27 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, TextInput, Button, FlatList, Alert} from 'react-native';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import Header from './components/Header';
-import ListItem from './components/ListItem';
-import AddItem from './components/AddItem';
+import PageContainer from './components/PageContainer'
+import Nav from './components/Nav'
 
-export default function App() {
-  const [items, setItems] = useState([
-    {id: 1, text: 'Jacket'},
-    {id: 2, text: 'Shirt'},
-    {id: 3, text: 'Pants'},
-    {id: 4, text: 'Hat'}
-  ])
-
-  function deleteItem(id){
-    setItems(prevItems => {
-      return prevItems.filter(item => item.id != id);
-    })
+export default class App extends React.Component {
+  state = {
+    view: 'start'
   }
 
-  function addItem(text){
-    if (text){
-      setItems(prevItems => {
-        return [...prevItems, {id: prevItems.length + 1, text}]
-      })
-    } else {
-      Alert.alert('Error', 'Please enter an item', {text: 'Ok'})
-    }
+  setView = (view) => {
+    this.setState({view})
   }
 
-  return (
-    <View style={styles.container}>
-      <Header />
-      <AddItem addItem={addItem}/>
-      <FlatList data={items} renderItem={({item}) => 
-        <ListItem item={item} deleteItem={deleteItem}/>
-      } />
-    </View>
-  );
+  render(){
+    return (
+      <View style={styles.container}>
+        <Header />
+        <Nav setView={this.setView}/>
+        <PageContainer view={this.state.view}/>
+      </View>
+    );
+  }
 }
 
 // note: styling is not cross-platform
