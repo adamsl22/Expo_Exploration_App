@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "expo-test-app",
+      "config": {
+        "googleMapsApiKey": "AIzaSyCbeLB95WBU_sGtpLwDqwCcJDjRoRyeo3w"
+      }
     }
   }
 }

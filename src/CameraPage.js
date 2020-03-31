@@ -8,13 +8,13 @@ export default class CameraPage extends React.Component {
   camera = null;
 
   state = {
-      hasCameraPermission: null
+    hasCameraPermission: null
   }
 
   async componentDidMount(){
-      const camera = await Permissions.askAsync(Permissions.CAMERA)
-      const hasCameraPermission = (camera.status === 'granted')
-      this.setState({hasCameraPermission})
+    const camera = await Permissions.askAsync(Permissions.CAMERA)
+    const hasCameraPermission = (camera.status === 'granted')
+    this.setState({hasCameraPermission})
   }
 
   render(){

@@ -2,18 +2,38 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
 import CameraPage from './src/CameraPage';
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 
-export default function App() {
-  // const [enteredText, setEnteredText] = useState('')
+export default class App extends React.Component {
+  state = {
+    location: null,
+    errorMessage: null,
+  };
+
+  async componentDidMount(){
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({ location });
+  }
   
-  return (
-    <View style={styles.container}>
-      <MapView style={styles.mapStyle} initialRegion={{
-          latitude: 40.7116,
-          longitude: -74.0158
-        }}/>
-    </View>
-  );
+  render(){
+    return (
+      <View style={styles.container}>
+        <MapView
+          style={styles.mapStyle}
+          provider='google'
+          region={this.state.location}
+        />
+      </View>
+    );
+  }
 }
 
 // note: styling is not cross-platform
