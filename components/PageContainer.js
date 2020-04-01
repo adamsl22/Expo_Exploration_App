@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, TextInput, Button, FlatList, Alert} from 'react-native';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import ListContainer from './ListContainer'
 import Map from './Map'
 
