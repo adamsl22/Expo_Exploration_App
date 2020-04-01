@@ -23,11 +23,15 @@ export default class Map extends React.Component {
     }
 
     zoomIn = () => {
-        this.setState(prevState => ({zoom: prevState.zoom - 0.01}))
+        if (this.state.zoom > 0.01){
+            this.setState(prevState => ({zoom: prevState.zoom - 0.01}))
+        }
     }
 
     zoomOut = () => {
-        this.setState(prevState => ({zoom: prevState.zoom + 0.01}))
+        if (this.state.zoom < 0.1){
+            this.setState(prevState => ({zoom: prevState.zoom + 0.01}))
+        }
     }
   
     render(){
@@ -50,7 +54,7 @@ export default class Map extends React.Component {
             </View>
         );
         } else {
-        return <View><Text>Enable location to use this feature.</Text></View>
+            return <View><Text>Enable location to use this feature.</Text></View>
         }
     }
 }
@@ -60,7 +64,7 @@ export default class Map extends React.Component {
 const styles = StyleSheet.create({
   mapStyle: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height / 1.4,
+    height: Dimensions.get('window').height / 1.29,
     alignSelf: 'flex-end'
   },
   zoomRow: {
