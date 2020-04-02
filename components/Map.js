@@ -40,6 +40,7 @@ export default class Map extends React.Component {
             <View>
                 <View style={styles.zoomRow}>
                 <Button title='Zoom In' onPress={this.zoomIn}/>
+                <Button title="Back" onPress={() => this.props.navigation.goBack()} />
                 <Button title='Zoom Out' onPress={this.zoomOut}/>
                 </View>
             <MapView
